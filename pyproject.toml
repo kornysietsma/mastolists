@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "mastolists"
+version = "0.1.0"
+description = "a simple script to manage my mastodon lists"
+authors = ["Korny Sietsma <korny@sietsma.com>"]
+
+[tool.poetry.scripts]
+main = "mastolists.mastolists:cli"
+register = "mastolists.mastolists:register"
+login = "mastolists.mastolists:login"
+dump = "mastolists.mastolists:dump"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+"Mastodon.py" = "^1.6.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^22.10.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
