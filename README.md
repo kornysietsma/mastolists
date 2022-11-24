@@ -14,10 +14,10 @@ If you want to run it, the steps are:
 
 - edit the code with your instance etc.
 - set MASTODON_PASSWORD in the environment, ideally from a password safe
-- run `poetry register` to register the app - ONLY DO THIS ONCE, credentials are saved to a file
-- run `poetry login` to log in - You probably only need to do this once, login credentials are saved to a file but they might expire? It's safe to run again, anyway
-- run `poetry main` to generate CSV output
-- run `poetry dump` to dump everything to JSON
+- run `poetry run register` to register the app - ONLY DO THIS ONCE, credentials are saved to a file
+- run `poetry run login` to log in - You probably only need to do this once, login credentials are saved to a file but they might expire? It's safe to run again, anyway
+- run `poetry run main` to generate CSV output
+- run `poetry run dump` to dump everything to JSON
 
 Then I suggest loading the CSV files into Google Sheets (handy as URLs will open in the same browser) and having a play.
 

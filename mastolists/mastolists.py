@@ -8,7 +8,7 @@ import sys
 
 from mastodon import Mastodon
 
-MY_INSTANCE = "https://octodon.social"
+MY_INSTANCE = "https://hachyderm.io"
 MY_USERNAME = "korny@sietsma.com"
 
 
@@ -42,7 +42,7 @@ def dump():
     """dump all data"""
 
     mastodon = Mastodon(
-        access_token="mastolists_usercred.secret", api_base_url="https://octodon.social"
+        access_token="mastolists_usercred.secret", api_base_url=MY_INSTANCE
     )
 
     me = mastodon.me()
