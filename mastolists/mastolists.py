@@ -134,7 +134,7 @@ def cli(args=None):
         f["local_page"] = f"{MY_INSTANCE}/@{f.acct}"
         f["note"] = clean_notes(f["note"])
     for f in followers:
-        f["local_page"] = f"https://{MY_INSTANCE}/@{f.acct}"
+        f["local_page"] = f"{MY_INSTANCE}/@{f.acct}"
         f["note"] = clean_notes(f["note"])
 
     with open("followers.csv", "w", newline="") as csvfile:
