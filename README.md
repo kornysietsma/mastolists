@@ -6,14 +6,22 @@ Very basic Python code for reviewing my followers and followings, including list
 
 It is full of duplication, hardcoded constants, and probably terrible non-idiomatic code.  I'm not a python developer!  Well, I was in the '90s, but not now - a lot of this has been google-driven-development
 
-You shouldn't run this without editing the code as usernames and instances are hardcoded!
+You shouldn't run this without reading an understanding the code!
 
-Credentials aren't.
+If you feel brave and want to run it, the steps are:
 
-If you want to run it, the steps are:
+## configuration
 
-- edit the code with your instance etc.
 - set MASTODON_PASSWORD in the environment, ideally from a password safe
+- set INSTANCE and USERNAME in the environment, or in a `.env` file similar to:
+
+```env
+INSTANCE=https://hachyderm.io
+USERNAME=korny@sietsma.com
+```
+
+## running
+
 - run `poetry run register` to register the app - ONLY DO THIS ONCE, credentials are saved to a file
 - run `poetry run login` to log in - You probably only need to do this once, login credentials are saved to a file but they might expire? It's safe to run again, anyway
 - run `poetry run main` to generate CSV output
@@ -31,8 +39,11 @@ The CSV has a bunch of columns:
 - local_page - the URL of their page on _your_ instance - from here you can add/remove to lists, etc
 - followers_count
 - following_count
+- notes (converted to text from html)
 
 then one column for each user list you have, with a value 'TRUE' if the user is in that list.
+
+Note - the `local_page` column assumes user pages are in the form `https://my.instance/@foo@mastodon.social` - some instances have a different URL format, if that's the case you'll have to edit the python code for your site - sorry!
 
 ## Notes to self
 

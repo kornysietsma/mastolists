@@ -5,11 +5,14 @@ import json
 import os
 import pprint
 import sys
-
+import html2text
+from dotenv import load_dotenv
 from mastodon import Mastodon
 
-MY_INSTANCE = "https://hachyderm.io"
-MY_USERNAME = "korny@sietsma.com"
+load_dotenv()
+
+MY_INSTANCE = os.environ["INSTANCE"]
+MY_USERNAME = os.environ["USERNAME"]
 
 
 def register():
@@ -83,6 +86,17 @@ def dump():
         json.dump(relationships, outfile, indent=2, default=str)
 
 
+def clean_notes(html):
+    h = html2text.HTML2Text()
+    h.ignore_links = True
+    h.ignore_tables = True
+    h.ignore_emphasis = True
+    h.ignore_images = True
+    text = h.handle(html)
+    # remove blank lines entirely
+    return os.linesep.join([s for s in text.splitlines() if s])
+
+
 def cli(args=None):
     """Process command line arguments."""
     if not args:
@@ -118,8 +132,10 @@ def cli(args=None):
 
     for f in following:
         f["local_page"] = f"{MY_INSTANCE}/@{f.acct}"
+        f["note"] = clean_notes(f["note"])
     for f in followers:
         f["local_page"] = f"https://{MY_INSTANCE}/@{f.acct}"
+        f["note"] = clean_notes(f["note"])
 
     with open("followers.csv", "w", newline="") as csvfile:
         fieldnames = [
@@ -131,6 +147,7 @@ def cli(args=None):
             "local_page",
             "followers_count",
             "following_count",
+            "note",
         ]
         for list in lists:
             fieldnames.append(list.title)
@@ -150,6 +167,7 @@ def cli(args=None):
             "local_page",
             "followers_count",
             "following_count",
+            "note",
         ]
         for list in lists:
             fieldnames.append(list.title)

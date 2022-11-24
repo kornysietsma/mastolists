@@ -13,6 +13,8 @@ dump = "mastolists.mastolists:dump"
 [tool.poetry.dependencies]
 python = "^3.9"
 "Mastodon.py" = "^1.6.3"
+html2text = "^2020.1.16"
+python-dotenv = "^0.21.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
