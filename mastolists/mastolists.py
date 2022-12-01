@@ -147,6 +147,7 @@ def cli(args=None):
             "local_page",
             "followers_count",
             "following_count",
+            "statuses_count",
             "note",
         ]
         for list in lists:
@@ -167,6 +168,7 @@ def cli(args=None):
             "local_page",
             "followers_count",
             "following_count",
+            "statuses_count",
             "note",
         ]
         for list in lists:
